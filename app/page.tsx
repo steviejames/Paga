@@ -60,7 +60,7 @@ export default function LandingPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <Link href="/get-started">
+              <Link href="/sign-up">
                 <Button
                   size="lg"
                   className="bg-[#2D3FFF] hover:bg-[#2D3FFF]/90 text-white rounded-full px-8 h-14 text-base"
@@ -69,9 +69,12 @@ export default function LandingPage() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
-              <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base border-2 bg-transparent">
-                Ver Demonstração
-              </Button>
+             <Link href="/dashboard">
+               
+                <Button size="lg" variant="outline" className="rounded-full px-8 h-14 text-base border-2 bg-transparent">
+                  Ver Demonstração
+                </Button>
+             </Link>
             </div>
 
             <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
