@@ -133,7 +133,7 @@ export default function DashboardPage() {
 
         <div className="grid gap-6 lg:grid-cols-2">
           {/*  */}
-          <div className="space-y-6 col-span-2">
+          <div className="space-y-6 col-span-full">
             <BusinessCard business={selectedBusiness} />
             
           </div>
