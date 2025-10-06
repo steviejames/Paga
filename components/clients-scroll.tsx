@@ -41,19 +41,18 @@ export function RecentClients() {
                </div>
              </div>
            
-             <DropdownMenu>
+             <DropdownMenu >
                <DropdownMenuTrigger asChild>
                  <button className="ml-2 text-muted-foreground transition-colors hover:text-foreground">
                    <MoreVertical className="h-5 w-5" />
                  </button>
                </DropdownMenuTrigger>
-               <DropdownMenuContent align="end">
+               <DropdownMenuContent align="end" >
                  <DropdownMenuItem asChild>
                    <Link href={`/clients/${client.id}`}>Ver detalhes</Link>
                  </DropdownMenuItem>
-                 <DropdownMenuItem>Enviar lembrete</DropdownMenuItem>
                  <DropdownMenuItem>Editar</DropdownMenuItem>
-                 <DropdownMenuItem className="text-destructive">Cancelar</DropdownMenuItem>
+                 <DropdownMenuItem className="text-destructive">Apagar</DropdownMenuItem>
                </DropdownMenuContent>
              </DropdownMenu>
            </div>

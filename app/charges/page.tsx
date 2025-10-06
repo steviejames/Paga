@@ -9,11 +9,11 @@ import { Search, Download, TrendingUp, Clock, CheckCircle2, Calendar, XCircle, P
 import Link from "next/link"
 import { charges } from "@/lib/mock-data"
 import { useState } from "react"
-
+import { useRouter } from "next/navigation"
 export default function HistoricoPage() {
   const [searchQuery, setSearchQuery] = useState("")
   const [filterStatus, setFilterStatus] = useState<string>("all")
-
+  const router = useRouter()
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
@@ -241,8 +241,8 @@ export default function HistoricoPage() {
               </thead>
               <tbody className="divide-y divide-border bg-card">
                 {allTransactions.map((transaction) => (
-                  <tr key={transaction.id} className="transition-colors hover:bg-muted/50">
-                    <td className="px-6 py-4">
+                  <tr key={transaction.id} onClick={() => router.push(`/charges/${transaction.id}`)} className="transition-colors hover:bg-muted/50 cursor-pointer">
+                 <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <Avatar className="h-10 w-10">
                           <AvatarImage src={transaction.avatar || "/placeholder.svg"} />
@@ -269,6 +269,7 @@ export default function HistoricoPage() {
                     <td className="px-6 py-4 text-right">
                       <div className="font-semibold">Kz {transaction.amount.toLocaleString()}</div>
                     </td>
+                 
                   </tr>
                 ))}
               </tbody>

@@ -95,7 +95,7 @@ export default function ChargeDetailsPage() {
   const handleCopyLink = async () => {
     setIsCopying(true)
     try {
-      await navigator.clipboard.writeText(charge.paymentLink)
+      await navigator.clipboard.writeText(`${window.location.origin}/pay/${charge.id}`)
       toast({
         title: "Link copiado!",
         description: "O link de pagamento foi copiado para a área de transferência.",
@@ -117,7 +117,7 @@ export default function ChargeDetailsPage() {
         await navigator.share({
           title: `Cobrança - ${charge.client}`,
           text: `Pagamento de ${formattedAmount} para ${charge.client}`,
-          url: charge.paymentLink,
+          url: `${window.location.origin}/pay/${charge.id}`,
         })
       } catch (error) {
         console.log("Erro ao compartilhar:", error)
@@ -289,7 +289,7 @@ export default function ChargeDetailsPage() {
                 Link de pagamento
               </h3>
               <div className="space-y-3">
-                <div className="rounded-lg bg-muted p-3 text-sm break-all font-mono">{charge.paymentLink}</div>
+                <div className="rounded-lg bg-muted p-3 text-sm break-all font-mono">{`${window.location.origin}/pay/${charge.id}`}</div>
                 <Button className="w-full" onClick={handleCopyLink}>
                   {isCopying ? (
                     <>
