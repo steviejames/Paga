@@ -207,7 +207,7 @@ export default function PaymentPage() {
                             <ol className="list-decimal list-inside space-y-1 text-muted-foreground">
                               <li>Clique em confirmar para gerar a referência</li>
                               <li>Dirija-se a um ATM Multicaixa</li>
-                              <li>Selecione "Pagamentos" e insira a referência</li>
+                              <li>Selecione &quot;Pagamentos&quot; e insira a referência</li>
                             </ol>
                           </div>
                         </div>

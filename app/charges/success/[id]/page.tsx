@@ -14,18 +14,16 @@ export default function ChargeSuccessPage() {
   const params = useParams()
   const searchParams = useSearchParams()
   const { toast } = useToast()
-  const [paymentLink, setPaymentLink] = useState("")
-  const [copied, setCopied] = useState(false)
-
-  useEffect(() => {
+  const [paymentLink, setPaymentLink] = useState(() => {
     const link = searchParams.get("link")
     if (link) {
-      setPaymentLink(link)
+      return link
     } else {
       // Fallback if link not in query params
-      setPaymentLink(`${window.location.origin}/pay/${params.id}`)
+      return typeof window !== "undefined" ? `${window.location.origin}/pay/${params.id}` : ""
     }
-  }, [params.id, searchParams])
+  })
+  const [copied, setCopied] = useState(false)
 
   const copyToClipboard = async () => {
     try {
