@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { SignOutButton } from "better-auth/components"
+import { SignOutButton } from "better-auth/react"
 
 export default function DashboardLayout({
   children,
@@ -27,6 +27,13 @@ export default function DashboardLayout({
               >
                 <span className="material-symbols-outlined text-2xl"> dashboard </span>
                 <p className="text-sm font-medium leading-normal">Dashboard</p>
+              </Link>
+              <Link
+                href="/dashboard/business"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+              >
+                <span className="material-symbols-outlined text-2xl"> store </span>
+                <p className="text-sm font-medium leading-normal">Meu Negócio</p>
               </Link>
               <Link
                 href="/dashboard/charges"
