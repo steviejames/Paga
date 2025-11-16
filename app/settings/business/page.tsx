@@ -1,190 +1,43 @@
 "use client"
 
-import type React from "react"
-
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { useActiveOrganization } from "better-auth/hooks"
 import { Button } from "@/components/ui/button"
-import { Building2, Plus, Trash2 } from "lucide-react"
-import { useState } from "react"
-import { useToast } from "@/hooks/use-toast"
+import { Input } from "@/components/ui/input"
 
-interface Business {
-  id: string
-  name: string
-  category: string
-  phone: string
-  email: string
-}
+export default function BusinessSettingsPage() {
+  const { organization } = useActiveOrganization()
 
-export default function BusinessPage() {
-  const { toast } = useToast()
-  const [businesses, setBusinesses] = useState<Business[]>([
-    {
-      id: "1",
-      name: "Loja Principal",
-      category: "E-commerce",
-      phone: "+244 900 000 000",
-      email: "contato@loja.ao",
-    },
-  ])
-
-  const [newBusiness, setNewBusiness] = useState({
-    name: "",
-    category: "",
-    phone: "",
-    email: "",
-  })
-
-  const handleAddBusiness = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!newBusiness.name || !newBusiness.category) {
-      toast({
-        title: "Erro",
-        description: "Preencha todos os campos obrigatórios.",
-        variant: "destructive",
-      })
-      return
-    }
-
-    const business: Business = {
-      id: Date.now().toString(),
-      ...newBusiness,
-    }
-
-    setBusinesses([...businesses, business])
-    setNewBusiness({ name: "", category: "", phone: "", email: "" })
-    toast({
-      title: "Negócio adicionado",
-      description: "Novo negócio criado com sucesso.",
-    })
-  }
-
-  const handleDeleteBusiness = (id: string) => {
-    if (businesses.length === 1) {
-      toast({
-        title: "Erro",
-        description: "Você precisa ter pelo menos um negócio.",
-        variant: "destructive",
-      })
-      return
-    }
-
-    setBusinesses(businesses.filter((b) => b.id !== id))
-    toast({
-      title: "Negócio removido",
-      description: "O negócio foi removido com sucesso.",
-    })
+  if (!organization) {
+    return <div>A carregar...</div>
   }
 
   return (
-    <>
-      <Card className="rounded-3xl border-0 p-6 shadow-sm">
-        <div className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-              <Building2 className="h-6 w-6 text-primary" />
-            </div>
-            <div>
-              <h2 className="text-xl font-semibold">Meus negócios</h2>
-              <p className="text-sm text-muted-foreground">Gerencie seus negócios cadastrados</p>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            {businesses.map((business) => (
-              <div key={business.id} className="rounded-2xl border border-border p-4">
-                <div className="flex items-start justify-between">
-                  <div className="space-y-1">
-                    <h3 className="font-semibold">{business.name}</h3>
-                    <p className="text-sm text-muted-foreground">{business.category}</p>
-                    <div className="flex flex-col gap-1 text-sm text-muted-foreground">
-                      <span>{business.phone}</span>
-                      <span>{business.email}</span>
-                    </div>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleDeleteBusiness(business.id)}
-                    className="text-destructive hover:text-destructive hover:bg-destructive/10"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
+    <div>
+      <div className="flex flex-wrap justify-between gap-3 p-4 mb-6">
+        <p className="text-[#111827] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Negócio</p>
+      </div>
+      <div className="bg-white dark:bg-[#18212a] rounded-xl shadow-sm mb-8">
+        <div className="p-6 border-b border-gray-200 dark:border-gray-800">
+          <h2 className="text-[#111827] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Detalhes do Negócio</h2>
+          <p className="text-[#6B7280] dark:text-gray-400 text-base font-normal leading-normal mt-1">Atualize as informações do seu negócio aqui.</p>
         </div>
-      </Card>
-
-      <Card className="rounded-3xl border-0 p-6 shadow-sm">
-        <form onSubmit={handleAddBusiness} className="space-y-6">
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-              <Plus className="h-6 w-6 text-primary" />
+        <div className="p-6">
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col">
+              <label className="text-[#111827] dark:text-white text-base font-medium leading-normal pb-2" htmlFor="businessName">Nome do Negócio</label>
+              <Input id="businessName" value={organization.name} />
             </div>
-            <div>
-              <h2 className="text-xl font-semibold">Adicionar novo negócio</h2>
-              <p className="text-sm text-muted-foreground">Cadastre um novo negócio</p>
+            <div className="flex flex-col">
+              <label className="text-[#111827] dark:text-white text-base font-medium leading-normal pb-2" htmlFor="businessSlug">Subdomínio</label>
+              <Input id="businessSlug" value={organization.slug} disabled />
             </div>
-          </div>
-
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="businessName">Nome do negócio *</Label>
-              <Input
-                id="businessName"
-                value={newBusiness.name}
-                onChange={(e) => setNewBusiness({ ...newBusiness, name: e.target.value })}
-                placeholder="Ex: Minha Loja"
-                className="h-11 rounded-2xl border-border"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="businessCategory">Categoria *</Label>
-              <Input
-                id="businessCategory"
-                value={newBusiness.category}
-                onChange={(e) => setNewBusiness({ ...newBusiness, category: e.target.value })}
-                placeholder="Ex: E-commerce, Restaurante, Serviços"
-                className="h-11 rounded-2xl border-border"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="businessPhone">Telefone</Label>
-              <Input
-                id="businessPhone"
-                type="tel"
-                value={newBusiness.phone}
-                onChange={(e) => setNewBusiness({ ...newBusiness, phone: e.target.value })}
-                placeholder="+244 900 000 000"
-                className="h-11 rounded-2xl border-border"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="businessEmail">Email</Label>
-              <Input
-                id="businessEmail"
-                type="email"
-                value={newBusiness.email}
-                onChange={(e) => setNewBusiness({ ...newBusiness, email: e.target.value })}
-                placeholder="contato@negocio.ao"
-                className="h-11 rounded-2xl border-border"
-              />
-            </div>
-          </div>
-
-          <Button type="submit" className="h-11 rounded-full">
-            <Plus className="mr-2 h-4 w-4" />
-            Adicionar negócio
-          </Button>
-        </form>
-      </Card>
-    </>
+          </form>
+        </div>
+      </div>
+      <div className="flex justify-end gap-3 p-4">
+        <Button variant="outline">Cancelar</Button>
+        <Button disabled>Salvar Alterações</Button>
+      </div>
+    </div>
   )
 }

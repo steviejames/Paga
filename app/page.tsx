@@ -4,13 +4,13 @@ import { Button } from "@/components/ui/button"
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-[#E8EBF0]">
+    <div className="min-h-screen bg-[#F9FAFB]">
       {/* Navigation */}
       <nav className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <div className="text-2xl font-bold text-gray-900">Paga</div>
+              <div className="text-2xl font-bold text-gray-900">InfinityPay</div>
             </Link>
 
             <div className="hidden md:flex items-center gap-8">
@@ -26,13 +26,13 @@ export default function LandingPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <Link href="/sign-up">
+              <Link href="/sign-in">
                 <Button variant="ghost" className="text-sm">
                   Entrar
                 </Button>
               </Link>
               <Link href="/sign-up">
-                <Button className="bg-[#2D3FFF] hover:bg-[#2D3FFF]/90 text-white rounded-full px-6">
+                <Button className="bg-[#4F46E5] hover:bg-[#4F46E5]/90 text-white rounded-full px-6">
                   Começar Grátis
                 </Button>
               </Link>
@@ -51,7 +51,7 @@ export default function LandingPage() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight text-balance">
-              Crie cobranças e receba pagamentos <span className="text-[#2D3FFF]">facilmente</span>
+              Crie cobranças e receba pagamentos <span className="text-[#4F46E5]">facilmente</span>
             </h1>
 
             <p className="text-xl text-gray-600 mb-10 leading-relaxed text-pretty max-w-2xl mx-auto">
@@ -63,7 +63,7 @@ export default function LandingPage() {
               <Link href="/sign-up">
                 <Button
                   size="lg"
-                  className="bg-[#2D3FFF] hover:bg-[#2D3FFF]/90 text-white rounded-full px-8 h-14 text-base"
+                  className="bg-[#4F46E5] hover:bg-[#4F46E5]/90 text-white rounded-full px-8 h-14 text-base"
                 >
                   Começar Grátis
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -96,7 +96,7 @@ export default function LandingPage() {
           {/* Hero Image/Mockup */}
           <div className="mt-20 relative">
             <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-5xl mx-auto border border-gray-200">
-              <div className="aspect-video bg-gradient-to-br from-[#2D3FFF] to-[#5B6FFF] rounded-2xl flex items-center justify-center">
+              <div className="aspect-video bg-gradient-to-br from-[#4F46E5] to-[#818CF8] rounded-2xl flex items-center justify-center">
                 <div className="text-white text-center">
                   <BarChart3 className="h-24 w-24 mx-auto mb-4 opacity-50" />
                   <p className="text-lg opacity-75">Dashboard Preview</p>
@@ -146,8 +146,8 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Feature 1 */}
             <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100">
-              <div className="w-14 h-14 bg-[#2D3FFF]/10 rounded-2xl flex items-center justify-center mb-6">
-                <FileText className="h-7 w-7 text-[#2D3FFF]" />
+              <div className="w-14 h-14 bg-[#4F46E5]/10 rounded-2xl flex items-center justify-center mb-6">
+                <FileText className="h-7 w-7 text-[#4F46E5]" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Cobranças Profissionais</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -157,8 +157,8 @@ export default function LandingPage() {
 
             {/* Feature 2 */}
             <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100">
-              <div className="w-14 h-14 bg-[#2D3FFF]/10 rounded-2xl flex items-center justify-center mb-6">
-                <LinkIcon className="h-7 w-7 text-[#2D3FFF]" />
+              <div className="w-14 h-14 bg-[#4F46E5]/10 rounded-2xl flex items-center justify-center mb-6">
+                <LinkIcon className="h-7 w-7 text-[#4F46E5]" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Links de Pagamento</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -168,8 +168,8 @@ export default function LandingPage() {
 
             {/* Feature 3 */}
             <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100">
-              <div className="w-14 h-14 bg-[#2D3FFF]/10 rounded-2xl flex items-center justify-center mb-6">
-                <BarChart3 className="h-7 w-7 text-[#2D3FFF]" />
+              <div className="w-14 h-14 bg-[#4F46E5]/10 rounded-2xl flex items-center justify-center mb-6">
+                <BarChart3 className="h-7 w-7 text-[#4F46E5]" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Acompanhamento em Tempo Real</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -179,8 +179,8 @@ export default function LandingPage() {
 
             {/* Feature 4 */}
             <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100">
-              <div className="w-14 h-14 bg-[#2D3FFF]/10 rounded-2xl flex items-center justify-center mb-6">
-                <Shield className="h-7 w-7 text-[#2D3FFF]" />
+              <div className="w-14 h-14 bg-[#4F46E5]/10 rounded-2xl flex items-center justify-center mb-6">
+                <Shield className="h-7 w-7 text-[#4F46E5]" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Múltiplos Métodos</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -190,8 +190,8 @@ export default function LandingPage() {
 
             {/* Feature 5 */}
             <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100">
-              <div className="w-14 h-14 bg-[#2D3FFF]/10 rounded-2xl flex items-center justify-center mb-6">
-                <Users className="h-7 w-7 text-[#2D3FFF]" />
+              <div className="w-14 h-14 bg-[#4F46E5]/10 rounded-2xl flex items-center justify-center mb-6">
+                <Users className="h-7 w-7 text-[#4F46E5]" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Gestão de Clientes</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -201,8 +201,8 @@ export default function LandingPage() {
 
             {/* Feature 6 */}
             <div className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-shadow border border-gray-100">
-              <div className="w-14 h-14 bg-[#2D3FFF]/10 rounded-2xl flex items-center justify-center mb-6">
-                <Zap className="h-7 w-7 text-[#2D3FFF]" />
+              <div className="w-14 h-14 bg-[#4F46E5]/10 rounded-2xl flex items-center justify-center mb-6">
+                <Zap className="h-7 w-7 text-[#4F46E5]" />
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Notificações Automáticas</h3>
               <p className="text-gray-600 leading-relaxed">
@@ -226,7 +226,7 @@ export default function LandingPage() {
           <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
             {/* Step 1 */}
             <div className="text-center">
-              <div className="w-16 h-16 bg-[#2D3FFF] text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+              <div className="w-16 h-16 bg-[#4F46E5] text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
                 1
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Crie a Cobrança</h3>
@@ -237,7 +237,7 @@ export default function LandingPage() {
 
             {/* Step 2 */}
             <div className="text-center">
-              <div className="w-16 h-16 bg-[#2D3FFF] text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+              <div className="w-16 h-16 bg-[#4F46E5] text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
                 2
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Envie o Link</h3>
@@ -248,7 +248,7 @@ export default function LandingPage() {
 
             {/* Step 3 */}
             <div className="text-center">
-              <div className="w-16 h-16 bg-[#2D3FFF] text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
+              <div className="w-16 h-16 bg-[#4F46E5] text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-6">
                 3
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Receba o Pagamento</h3>
@@ -300,8 +300,8 @@ export default function LandingPage() {
             </div>
 
             {/* Pro Plan */}
-            <div className="bg-[#2D3FFF] rounded-3xl p-8 shadow-xl relative">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-[#2D3FFF] px-4 py-1 rounded-full text-sm font-semibold">
+            <div className="bg-[#4F46E5] rounded-3xl p-8 shadow-xl relative">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white text-[#4F46E5] px-4 py-1 rounded-full text-sm font-semibold">
                 Mais Popular
               </div>
               <div className="mb-6">
@@ -329,7 +329,7 @@ export default function LandingPage() {
                   <span className="text-white">Suporte prioritário</span>
                 </li>
               </ul>
-              <Button className="w-full rounded-full h-12 bg-white text-[#2D3FFF] hover:bg-white/90">
+              <Button className="w-full rounded-full h-12 bg-white text-[#4F46E5] hover:bg-white/90">
                 Começar Agora
               </Button>
             </div>
@@ -369,17 +369,17 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 px-6 bg-gradient-to-br from-[#2D3FFF] to-[#5B6FFF]">
+      <section className="py-32 px-6 bg-gradient-to-br from-[#4F46E5] to-[#818CF8]">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 text-balance">
             Pronto para começar a receber pagamentos?
           </h2>
           <p className="text-xl text-white/90 mb-10 text-pretty">
-            Junte-se a centenas de empresas angolanas que já usam Paga
+            Junte-se a centenas de empresas angolanas que já usam InfinityPay
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/get-started">
-              <Button size="lg" className="bg-white text-[#2D3FFF] hover:bg-white/90 rounded-full px-8 h-14 text-base">
+              <Button size="lg" className="bg-white text-[#4F46E5] hover:bg-white/90 rounded-full px-8 h-14 text-base">
                 Começar Grátis
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -400,7 +400,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div>
-              <div className="text-2xl font-bold text-white mb-4">Paga</div>
+              <div className="text-2xl font-bold text-white mb-4">InfinityPay</div>
               <p className="text-sm leading-relaxed">A plataforma de cobranças para empresas angolanas.</p>
             </div>
 
@@ -469,7 +469,7 @@ export default function LandingPage() {
           </div>
 
           <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-            <p>&copy; 2025 Paga. Todos os direitos reservados.</p>
+            <p>&copy; 2025 InfinityPay. Todos os direitos reservados.</p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-white transition-colors">
                 Privacidade

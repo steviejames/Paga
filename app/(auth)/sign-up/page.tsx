@@ -1,9 +1,46 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { authClient } from "@/lib/auth-client"
+import { useState } from "react"
+import { useToast } from "@/hooks/use-toast"
+import { useRouter } from "next/navigation"
 
 export default function SignUpPage() {
+  const { toast } = useToast()
+  const router = useRouter()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [name, setName] = useState("")
+  const [loading, setLoading] = useState(false)
+
+  const handleSignUp = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    const { error } = await authClient.auth.signUp({
+      email,
+      password,
+      name,
+    })
+    setLoading(false)
+    if (error) {
+      toast({
+        title: "Erro ao criar conta",
+        description: error.message,
+        variant: "destructive",
+      })
+    } else {
+      toast({
+        title: "Conta criada com sucesso!",
+        description: "Enviamos um e-mail de verificação para você.",
+      })
+      router.push("/verify-email")
+    }
+  }
+
   return (
     <div className="relative flex min-h-screen w-full">
       <div className="flex flex-1 flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8">
@@ -14,21 +51,38 @@ export default function SignUpPage() {
               Rápido e fácil. Junte-se à plataforma líder em gestão.
             </p>
           </div>
-          <form className="space-y-6">
+          <form onSubmit={handleSignUp} className="space-y-6">
             <div>
               <Label htmlFor="full-name">Nome Completo</Label>
-              <Input id="full-name" placeholder="Insira seu nome completo" />
+              <Input
+                id="full-name"
+                placeholder="Insira seu nome completo"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </div>
             <div>
               <Label htmlFor="email">Seu melhor e-mail</Label>
-              <Input id="email" type="email" placeholder="exemplo@email.com" />
+              <Input
+                id="email"
+                type="email"
+                placeholder="exemplo@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div>
               <Label htmlFor="password">Crie uma senha forte</Label>
-              <Input id="password" type="password" placeholder="••••••••" />
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <Button type="submit" className="w-full h-14">
-              Registrar
+            <Button type="submit" className="w-full h-14" disabled={loading}>
+              {loading ? "Aguarde..." : "Registrar"}
             </Button>
           </form>
           <div className="relative flex items-center justify-center">
@@ -42,7 +96,7 @@ export default function SignUpPage() {
             </div>
           </div>
           <div>
-            <Button variant="outline" className="w-full h-14">
+            <Button variant="outline" className="w-full h-14" disabled>
               Registrar com Google
             </Button>
           </div>

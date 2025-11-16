@@ -1,29 +1,21 @@
-import type React from "react"
-import type { Metadata } from "next"
+"use client"
+
 import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { Analytics } from "@vercel/analytics/next"
-import { Suspense } from "react"
-import { Toaster } from "@/components/ui/toaster"
-import "./globals.css"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
-export const metadata: Metadata = {
-  title: "Paga - Plataforma de Cobranças para Empresas Angolanas",
-  description: "Crie cobranças profissionais e receba pagamentos facilmente através de múltiplos métodos angolanos",
-  generator: "v0.app",
-}
+import "@/app/globals.css"
+import { Toaster } from "@/components/ui/sonner"
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+const queryClient = new QueryClient()
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt">
-      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Suspense fallback={null}>{children}</Suspense>
+    <html lang="en" className={GeistSans.className}>
+      <body>
+        <QueryClientProvider client={queryClient}>
+          {children}
+        </QueryClientProvider>
         <Toaster />
-        <Analytics />
       </body>
     </html>
   )

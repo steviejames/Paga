@@ -1,6 +1,12 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
+import { useSearchParams } from "next/navigation"
 
 export default function VerifyEmailPage() {
+  const searchParams = useSearchParams()
+  const email = searchParams.get("email")
+
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center bg-background-light p-4 dark:bg-background-dark">
       <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-lg dark:bg-background-dark/50 sm:p-8">
@@ -13,8 +19,8 @@ export default function VerifyEmailPage() {
           </h1>
           <p className="mt-3 text-base font-normal leading-normal text-slate-600 dark:text-slate-300">
             Enviamos um link de verificação para{" "}
-            <strong className="font-semibold text-[#111417] dark:text-white">seu.email@exemplo.com</strong>. Por favor,
-            clique no link para ativar sua conta.
+            <strong className="font-semibold text-[#111417] dark:text-white">{email || "seu e-mail"}</strong>. Por
+            favor, clique no link para ativar sua conta.
           </p>
           <div className="mt-8 w-full">
             <Button className="h-12 w-full">Abrir cliente de e-mail</Button>

@@ -1,114 +1,53 @@
 "use client"
 
-import type React from "react"
-
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { useAuth } from "better-auth/hooks"
 import { Button } from "@/components/ui/button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { User, Camera } from "lucide-react"
-import { useState } from "react"
-import { useToast } from "@/hooks/use-toast"
+import { Input } from "@/components/ui/input"
 
-export default function ProfilePage() {
-  const { toast } = useToast()
-  const [formData, setFormData] = useState({
-    firstName: "João",
-    lastName: "Pedro",
-    email: "joao@paga.ao",
-    phone: "+244 900 000 000",
-  })
+export default function ProfileSettingsPage() {
+  const { user } = useAuth()
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    toast({
-      title: "Perfil atualizado",
-      description: "Suas informações foram salvas com sucesso.",
-    })
+  if (!user) {
+    return <div>A carregar...</div>
   }
 
   return (
-    <Card className="rounded-3xl border-0 p-6 shadow-sm">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-            <User className="h-6 w-6 text-primary" />
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold">Informações do perfil</h2>
-            <p className="text-sm text-muted-foreground">Atualize suas informações pessoais</p>
-          </div>
+    <div>
+      <div className="flex flex-wrap justify-between gap-3 p-4 mb-6">
+        <p className="text-[#111827] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Perfil</p>
+      </div>
+      <div className="bg-white dark:bg-[#18212a] rounded-xl shadow-sm mb-8">
+        <div className="p-6 border-b border-gray-200 dark:border-gray-800">
+          <h2 className="text-[#111827] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Informações Pessoais</h2>
+          <p className="text-[#6B7280] dark:text-gray-400 text-base font-normal leading-normal mt-1">Atualize suas informações pessoais aqui.</p>
         </div>
-
-        {/* Avatar Upload */}
-        <div className="flex items-center gap-6">
-          <div className="relative">
-            <Avatar className="h-24 w-24">
-              <AvatarImage src="/woman-profile.jpg" />
-              <AvatarFallback>JP</AvatarFallback>
-            </Avatar>
-            <button
-              type="button"
-              className="absolute bottom-0 right-0 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-colors hover:bg-primary/90"
-            >
-              <Camera className="h-4 w-4" />
-            </button>
-          </div>
-          <div>
-            <h3 className="font-medium">Foto de perfil</h3>
-            <p className="text-sm text-muted-foreground">PNG, JPG até 5MB</p>
-          </div>
+        <div className="p-6">
+          <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex flex-col">
+              <label className="text-[#111827] dark:text-white text-base font-medium leading-normal pb-2" htmlFor="fullName">Nome Completo</label>
+              <Input id="fullName" value={user.name} />
+            </div>
+            <div className="flex flex-col">
+              <label className="text-[#111827] dark:text-white text-base font-medium leading-normal pb-2" htmlFor="email">Endereço de E-mail</label>
+              <Input id="email" value={user.email} disabled />
+            </div>
+            <div className="col-span-1 md:col-span-2 flex items-center gap-4">
+              <div
+                className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-16"
+                style={{ backgroundImage: `url(${user.image})` }}
+              />
+              <div>
+                <Button variant="outline">Alterar Foto</Button>
+                <Button variant="ghost" className="text-red-500 hover:text-red-600 ml-2">Remover</Button>
+              </div>
+            </div>
+          </form>
         </div>
-
-        {/* Form Fields */}
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="space-y-2">
-            <Label htmlFor="firstName">Nome</Label>
-            <Input
-              id="firstName"
-              value={formData.firstName}
-              onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-              className="h-11 rounded-2xl border-border"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="lastName">Sobrenome</Label>
-            <Input
-              id="lastName"
-              value={formData.lastName}
-              onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-              className="h-11 rounded-2xl border-border"
-            />
-          </div>
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-            className="h-11 rounded-2xl border-border"
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="phone">Telefone</Label>
-          <Input
-            id="phone"
-            type="tel"
-            value={formData.phone}
-            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-            className="h-11 rounded-2xl border-border"
-          />
-        </div>
-
-        <Button type="submit" className="h-11 rounded-full">
-          Salvar alterações
-        </Button>
-      </form>
-    </Card>
+      </div>
+      <div className="flex justify-end gap-3 p-4">
+        <Button variant="outline">Cancelar</Button>
+        <Button disabled>Salvar Alterações</Button>
+      </div>
+    </div>
   )
 }
