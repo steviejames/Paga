@@ -1,7 +1,7 @@
 "use client"
 
 import { useQuery } from "@tanstack/react-query"
-import { useActiveOrganization } from "better-auth/hooks"
+import { useActiveOrganization } from "better-auth/react"
 import { getChargesByOrganization } from "@/lib/queries"
 import { DataTable } from "@/components/ui/data-table"
 import { columns } from "./columns"

@@ -1,6 +1,6 @@
 "use client"
 
-import { useActiveOrganization } from "better-auth/hooks"
+import { useActiveOrganization } from "better-auth/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { useAuth } from "better-auth/hooks"
+import { useAuth } from "better-auth/react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 

@@ -1,9 +1,10 @@
 "use client"
 
+import React from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { useActiveOrganization } from "better-auth/hooks"
+import { useActiveOrganization } from "better-auth/react"
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 import { toast } from "sonner"

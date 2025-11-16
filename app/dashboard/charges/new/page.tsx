@@ -1,8 +1,9 @@
 "use client"
 
+import React from "react"
 import { useQuery, useMutation } from "@tanstack/react-query"
-import { useActiveOrganization } from "better-auth/hooks"
-import { getProductsByOrganization, getServicesByOrganization, getCustomersByOrganization } from "@/lib/queries" // I will need to create these new queries
+import { useActiveOrganization } from "better-auth/react"
+import { getProductsByOrganization, getServicesByOrganization, getCustomersByOrganization } from "@/lib/queries"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
